@@ -1,0 +1,20 @@
+<% if @item.errors.any? %>
+    <% @item.errors.full_messages.each do |msg| %>
+       <div class="warning"> <%= msg %></div>
+    <% end %>
+<% end %>
+<%= form_with model: item, local: true do |form| %>
+    <p>
+        Task: <%= form.text_field :name %>
+    </p>
+    <p>
+        Notes: <%= form.text_area :notes %>
+    </p>
+    <p>
+        Due By: <%= form.datetime_select :due_date %>
+    </p>
+    <p>
+        Completed: <%= form.check_box :completed %>
+    </p>
+        <%= form.submit %>
+<% end %>
