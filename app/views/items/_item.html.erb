@@ -1,6 +1,6 @@
 <h3>Task: <%= item.name %></h3>
 <p> Notes: <%= item.notes %> </p>
-<p> Due By: <%= link_to item.date %> </p>
+<p> Due By: <%= link_to item.date, list_view_by_date_path(date: item.date.strftime("%Y-%m-%d")) %> </p>
 <p> Completed: <%= item.completed %> </p>
 
 
