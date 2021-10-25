@@ -1,6 +1,5 @@
 <%= render 'list', list: @list %>
 
-<h4>Tasks:</h4>
 <% @list.items.each do |item| %>
     <%= render partial: "items/item", locals: {item: item} %>
     <% end %>
