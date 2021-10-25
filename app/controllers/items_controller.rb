@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
 
-    before_action :get_item, only: [:show, :destroy]
-    before_action :get_list_item, only: [:edit, :update]
+    before_action :get_item, only: [:show]
+    before_action :get_list_item, only: [:edit, :update, :destroy]
 
     def index
         if params[:list_id]
@@ -36,7 +36,7 @@ class ItemsController < ApplicationController
 
     def update
         if @item.update(item_params)
-            redirect_to item_path(@item)
+            redirect_to list_items_path(@list)
         else
             flash[:danger] = "Item was not updated, please try again"
             render :edit
