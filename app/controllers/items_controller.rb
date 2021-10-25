@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
 
     def index
-        @item = Item.all
+        @items = Item.all
     end
 
     def new
@@ -9,7 +9,7 @@ class ItemsController < ApplicationController
     end
 
     def create
-        # if params[:list_id]
+        if params[:list_id]
             @item = Item.new(item_params)
             if @item.save
                 redirect_to item_path(@item)
@@ -17,7 +17,7 @@ class ItemsController < ApplicationController
                 flash[:danger] = "Item was not saved, please try again"
                 render :new
             end
-        # end
+        end
     end
 
     def edit
