@@ -2,5 +2,6 @@
     <%= render 'lists/list', list: item.list %>
     <%= render "item", item: item %>
 
+    <%= link_to "Edit Task", edit_list_item_path(item.list, item) %> <%= render "delete", list: item.list, item: item %>
 <% end %>
 
