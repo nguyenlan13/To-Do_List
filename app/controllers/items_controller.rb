@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
 
     before_action :get_item, only: [:show, :destroy]
+    before_action :get_list_item, only: [:edit, :update]
 
     def index
         if params[:list_id]
@@ -30,13 +31,10 @@ class ItemsController < ApplicationController
     end
 
     def edit
-        @list = List.find(params[:list_id])
-        @item = @list.items.find(params[:id])
+ 
     end
 
     def update
-        @list = List.find(params[:list_id])
-        @item = @list.items.find(params[:id])
         if @item.update(item_params)
             redirect_to item_path(@item)
         else
@@ -54,13 +52,18 @@ class ItemsController < ApplicationController
             redirect_to list_items_path(@list)
         else
             flash[:danger] = "Item could not be deleted"
-            redirect_to(request.env['HTTP_REFERER'])
+            # redirect_to(request.env['HTTP_REFERER'])
         end
     end
 
     def view_by_date
-        @items = Item.where("DATE(event_at)=?", )
-
+        if params[:date]
+            @list = List.find(params[:list_id])
+            @items = @list.items.for_date(params[:date])
+        else
+            flash[:danger] = "Sorry, something went wrong"
+            redirect_to list_items_path(@list)
+        end
     end
 
 
@@ -68,6 +71,11 @@ class ItemsController < ApplicationController
 
     def get_item
         @item = Item.find(params[:id])
+    end
+
+    def get_list_item
+        @list = List.find(params[:list_id])
+        @item = @list.items.find(params[:id])
     end
 
     def item_params
