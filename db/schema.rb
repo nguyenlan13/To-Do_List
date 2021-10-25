@@ -13,13 +13,14 @@
 ActiveRecord::Schema.define(version: 2021_10_24_080834) do
 
   create_table "items", force: :cascade do |t|
+    t.bigint "list_id"
     t.string "name"
     t.text "notes"
-    t.datetime "due_date"
+    t.datetime "date"
     t.boolean "completed", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["due_date"], name: "index_items_on_due_date"
+    t.index ["date"], name: "index_items_on_date"
   end
 
   create_table "lists", force: :cascade do |t|
