@@ -1,24 +1,23 @@
-# README
+#To-Do List
+A simple Ruby on Rails application to manage tasks:
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+    -Lists can be created
+    -Tasks can be added to a list
+    -Tasks can be edited and marked as completed
+    -Tasks can be deleted
 
-Things you may want to cover:
+##Usage
+To utilize this application:
 
-* Ruby version
+##fork and clone this repository
+bundle install
+Use rails s command in terminal to run the application locally
 
-* System dependencies
+##Contributing
+Bug reports and pull requests are welcome on GitHub at https://github.com/nguyenlan13/To-Do_List. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
 
-* Configuration
+##License
+The gem is available as open source under the terms of the MIT License.
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+##Code of Conduct
+Everyone interacting in the To-Do List project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the code of conduct.
