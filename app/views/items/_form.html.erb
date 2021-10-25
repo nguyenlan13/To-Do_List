@@ -1,9 +1,10 @@
-<% if @item.errors.any? %>
-    <% @item.errors.full_messages.each do |msg| %>
+<% if item.errors.any? %>
+    <% item.errors.full_messages.each do |msg| %>
        <div class="warning"> <%= msg %></div>
     <% end %>
 <% end %>
-<%= form_with model: item, local: true do |form| %>
+<%= form_with model: ([list, item]), local: true do |form| %>
+    <%= hidden_field_tag "list_id", list.id %>
     <p>
         Task: <%= form.text_field :name %>
     </p>
@@ -11,10 +12,10 @@
         Notes: <%= form.text_area :notes %>
     </p>
     <p>
-        Due By: <%= form.datetime_select :due_date %>
+        Due By: <%= form.datetime_select :date %>
     </p>
     <p>
         Completed: <%= form.check_box :completed %>
     </p>
-        <%= form.submit %>
+        <%= form.submit item.id.nil? ? 'Create Task' : "Edit Task"%>
 <% end %>
