@@ -1,0 +1,6 @@
+<% @items.each do |item| %>
+    <%= render 'lists/list', list: item.list %>
+    <%= render "item", item: item %>
+
+<% end %>
+
