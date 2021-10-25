@@ -1,40 +1,39 @@
 class ListsController < ApplicationController
+
     def index
-        @item = Item.all
+        @lists = List.all
     end
 
     def new
-        @item = Item.new
+        @list = List.new
     end
 
     def create
-        # if params[:list_id]
-            @item = Item.new(item_params)
-            if @item.save
-                redirect_to item_path(@item)
-            else
-                flash[:danger] = "Item was not saved, please try again"
-                render :new
-            end
-        # end
+        @list = List.new(list_params)
+        if @list.save
+            redirect_to list_path(@list)
+        else
+            flash[:danger] = "List was not saved, please try again"
+            render :new
+        end
     end
 
     def edit
-        @item = Item.find(params[:id])
+        @list = List.find(params[:id])
     end
 
     def update
-        @item = Item.find(params[:id])
-        if @item.update(item_params)
-            redirect_to item_path(@item)
+        @list = List.find(params[:id])
+        if @list.update(list_params)
+            redirect_to list_path(@list)
         else
-            flash[:danger] = "Item was not updated, please try again"
+            flash[:danger] = "List was not updated, please try again"
             render :edit
         end
     end
 
     def show
-        @item = Item.find(params[:id])
+        @list = List.find(params[:id])
     end
 
     def destroy
@@ -43,14 +42,9 @@ class ListsController < ApplicationController
 
     end
 
-    def view_by_date
-
-    end
-
-
     private
 
-    def item_params
-        params.require(:item).permit(:list_id, :name, :notes, :due_date, :completed)
+    def list_params
+        params.require(:item).permit(:title, :category)
     end
 end
