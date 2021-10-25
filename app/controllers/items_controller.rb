@@ -1,7 +1,11 @@
 class ItemsController < ApplicationController
 
     def index
-        @items = Item.all
+        if params[:list_id]
+            @items = List.find(params[:id]).items
+        else
+            @items = Item.all
+        end
     end
 
     def new
